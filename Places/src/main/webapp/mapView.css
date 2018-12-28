@@ -1,0 +1,85 @@
+#logo * {
+    color: seagreen;
+}
+
+#logo i {
+    font-size: 2rem;
+}
+
+#logo a {
+    text-decoration: underline;
+}
+
+#searchInput {
+    display: inline;
+}
+
+#userIcon, #addIcon {
+    align-self: center;
+    color: seagreen;
+    font-size: 2.5rem;
+}
+
+i:hover, #logo:hover {
+    cursor: pointer;
+}
+
+.miniMapBody {
+    align-self: center;
+    text-align: center;
+}
+
+.h-100:hover {
+    border: 1px solid;
+    border-color: seagreen;
+}
+
+label {
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+}
+
+.modal-header h5 {
+    text-decoration: underline;
+}
+
+#tagsBox, #placeTagsBox {
+    display: flex;
+    align-items: center;
+}
+
+.tags, .placeTags {
+    height: fit-content;
+    line-height: 2;
+    margin-right: .5rem;
+    cursor: pointer;
+}
+
+.editIcon, .removeIcon {
+    font-size: 2rem;
+}
+
+.editIcon {
+    color: #005cbf;
+}
+
+.removeIcon {
+    color: #721c24;
+}
+
+.editRemoveContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+#createMapBtn {
+    background-color: seagreen;
+}
+
+#page {
+    height: 100%;
+}
+
+#map {
+    height: 100%;
+}

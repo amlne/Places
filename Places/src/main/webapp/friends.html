@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Places</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+          integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+          crossorigin=""/>
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/friends.css">
+    <script src="index.js"></script>
+
+    <script src="ajax.js"></script>
+</head>
+
+<body>
+<script id="subs-template" type="text/template">
+    <span class="list-group-item">
+        <h5 class="col-6 offset-2 friend" id="<%= userSubs %>"
+            style="display:inline; cursor: pointer"><%= name %></h5>
+    </span>
+</script>
+
+<script id="folo-template" type="text/template">
+    <span class="list-group-item">
+        <button class="btn btn-danger" type="button" onclick="deleteFriend(this)">
+            <i class="fa fa-remove"></i>
+        </button>
+        <h5 class="col-6 offset-2 friend" id="<%= userFolo %>"
+            style="display:inline; cursor: pointer"><%= name %></h5>
+    </span>
+</script>
+
+
+<script id="friendResult-template" type="text/template">
+    <li class="list-group-item itemResult" id="<%= username %>"><%= username %>
+        <button class="btn btn-info" type="button" onclick="">
+            <i class="fa fa-handshake-o"></i>
+        </button>
+    </li>
+</script>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container-fluid">
+
+        <div class="logo" title="Home" onclick="window.location.href='home.html'">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 269.88 135.4">
+                <defs>
+                    <style>
+                        .a {
+                            fill: none;
+                            stroke: #fff;
+                            stroke-width: 6px;
+                        }
+
+                        .b {
+                            isolation: isolate;
+                            font-size: 55.77px;
+                            fill: #fff;
+                            font-family: 'Arial', sans-serif;
+                            font-weight: 700;
+                        }
+
+                        .c {
+                            fill: #b32443;
+                            stroke: #b32442;
+                            stroke-miterlimit: 10;
+                        }
+                    </style>
+                </defs>
+                <polygon class="a"
+                         points="12.89 3 3.47 67.23 27.93 67.23 21.28 125.37 86.89 43.15 48.34 43.15 58.21 3 12.89 3"></polygon>
+                <text class="b" transform="translate(95.43 64.19)">places</text>
+                <circle class="c" cx="31.12" cy="18.42" r="7.24"></circle>
+            </svg>
+        </div>
+
+        <div id="button-on-nav" class="navbar-nav ml-auto">
+            <button type="button" class="btn btn-light" onclick="window.location = 'profile.html'">
+                Profile
+            </button>
+            <a href="login.html">
+                <i class="fa fa-power-off"></i>
+            </a>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-responsive"
+                aria-controls="navbar-responsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="navbar-responsive" class="collapse navbar-collapse">
+            <span class="col-lg-4 offset-sm-3">
+                <form class="input-group">
+                    <input id="input-search" type="text" class="form-control border-0" placeholder="Search a friend...">
+                    <span class="input-group-append">
+                        <button id="search-btn" class="btn border border-left-0" type="button">
+                            <i class="fa fa-search" onclick=""></i>
+                        </button>
+                    </span>
+                </form>
+                <ul id="result" class="list-group col-lg-11">
+
+                </ul>
+		    </span>
+            <div id="button-on-collapse" class="navbar-nav ml-auto">
+                <button type="button" class="btn btn-light" onclick="window.location = 'profile.html'">
+                    Profile
+                </button>
+                <a href="login.html">
+                    <i class="fa fa-power-off"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</nav>
+<!--Delete friend modal-->
+<div class="modal fade" id="delete-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Friend</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <p>Do you really want delete this friend</p>
+                <form action="">
+                </form>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="deleteFriend()">Delete
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Page Content -->
+
+<div class="container">
+    <div class="row" id="page">
+        <div class="col-4 offset-1" id="subs">
+        </div>
+        <div class="col-4 offset-2" id="folo">
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer class="py-3 bg-dark fixed-bottom">
+    <div class="container">
+        <p id="copyright" class="m-0 text-center text-white">Copyright &copy; Places 2018 All rights reserved</p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script src="js/friends.js"></script>
+
+</body>
+
+</html>

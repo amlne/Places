@@ -1,0 +1,48 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    padding-top: 54px;
+}
+
+footer {
+    background-color: #67767F;
+}
+
+.page-content {
+    margin-right: 30px;
+    margin-left: 30px;
+    min-width: 320px;
+    padding-bottom: 40px;
+}
+
+#add-map {
+    bottom: 40px;
+}
+
+#add-map div {
+    height: 50px;
+    width: 120px;
+    text-align: center;
+    border: solid 2px #67767F;
+    margin: 0 auto;
+    background-color: white;
+}
+
+#add-map i {
+    font-size: xx-large;
+    color: #67767F;
+    transform: translateY(-50%);
+    top: 50%;
+    position: relative;
+}
+
+#box-line {
+    text-align: center
+}
+
+#page {
+    margin-top: 3rem;
+    width: 100%;
+}

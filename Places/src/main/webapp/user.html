@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Places</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="css/navigation.css">
+    <link rel="stylesheet" type="text/css" href="css/template.css">
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+
+    <!--Scripts -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+<script id="map-template" type="text/template">
+    <div class='col-lg-4 col-md-6 mb-4 box-map' id="<%= mapId %>" onclick="goMap(this.id)">
+        <div class="card h-100 mini-map-body">
+            <img class="card-img-top" src="http://placehold.it/700x400" alt="">
+            <div class="card-body">
+                <h5 class="card-title"><%= name %></h5>
+                <p class="card-text">Author : <%= author %>
+                    <br/>
+                    <%= date %>
+                </p>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="friendResult-template" type="text/template">
+    <li class="list-group-item itemResult" id="<%= username %>"><%= username %>
+        <button class="btn btn-info" type="button" onclick="">
+            <i class="fa fa-handshake-o"></i>
+        </button>
+    </li>
+</script>
+<script id="resultSearchTemplate" type="text/template">
+    <li class="list-group-item itemResult"><%= SearchResult %></li>
+</script>
+
+<script id="user-info" type="text/template">
+    <%= userInfo %>
+</script>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container-fluid">
+
+        <div class="logo" title="Home" onclick="window.location.href='home.html'">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 269.88 135.4">
+                <defs>
+                    <style>
+                        .a {
+                            fill: none;
+                            stroke: #fff;
+                            stroke-width: 6px;
+                        }
+
+                        .b {
+                            isolation: isolate;
+                            font-size: 55.77px;
+                            fill: #fff;
+                            font-family: 'Arial', sans-serif;
+                            font-weight: 700;
+                        }
+
+                        .c {
+                            fill: #b32443;
+                            stroke: #b32442;
+                            stroke-miterlimit: 10;
+                        }
+                    </style>
+                </defs>
+                <polygon class="a"
+                         points="12.89 3 3.47 67.23 27.93 67.23 21.28 125.37 86.89 43.15 48.34 43.15 58.21 3 12.89 3"></polygon>
+                <text class="b" transform="translate(95.43 64.19)">places</text>
+                <circle class="c" cx="31.12" cy="18.42" r="7.24"></circle>
+            </svg>
+        </div>
+
+        <div id="button-on-nav" class="navbar-nav ml-auto">
+            <button type="button" class="btn btn-light" onclick="window.location = 'profile.html'">
+                Profile
+            </button>
+            <a>
+                <i class="fa fa-power-off dis"></i>
+            </a>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-responsive"
+                aria-controls="navbar-responsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="navbar-responsive" class="collapse navbar-collapse">
+            <span class="col-lg-4 offset-sm-3">
+                <form class="input-group">
+                    <input id="input-search" type="text" class="form-control border-0" placeholder="Search a tag...">
+                    <span class="input-group-append">
+                        <button id="search-btn" class="btn border border-left-0" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </form>
+                <ul id="searchResult" class="list-group col-lg-11"></ul>
+
+		    </span>
+
+            <div id="button-on-collapse" class="navbar-nav ml-auto">
+                <button type="button" class="btn btn-light" onclick="window.location = 'profile.html'">
+                    Profile
+                </button>
+                <a>
+                    <i class="fa fa-power-off dis"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</nav><div class="second-nav">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid offset-sm-1">
+            <ul class="nav navbar-nav mr-auto">
+                <li id="profile-name" class="nav-item second-nav-item">
+                    <a class="nav-link">User searched</a>
+                </li>
+            </ul>
+            <li class="nav-item second-nav-item">
+                <a id="addAccess" >Grant access</a>
+                <i class="fa fa-handshake-o"></i>
+            </li>
+        </div>
+    </nav>
+</div>
+
+<!-- Page Content -->
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div id="page">
+                <div id="box-line" class="row">
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.col-lg-9 -->
+        </div>
+        <!-- /.row -->
+        <div id="add-map" class="fixed-bottom">
+            <div>
+                <i class="fa fa-plus"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<footer class="py-2 bottom">
+    <div class="container">
+        <p id="copyright" class="m-0 text-center text-white">Copyright &copy; Places - 2018 All rights
+            reserved</p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script src="js/user.js"></script>
+
+
+</body>
+
+</html>

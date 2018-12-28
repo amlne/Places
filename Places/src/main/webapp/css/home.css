@@ -1,0 +1,83 @@
+.h-100:hover {
+    border: 1px solid seagreen;
+}
+
+.mini-map-body {
+    align-self: center;
+    text-align: center;
+}
+
+.modal-header h5 {
+    text-decoration: underline;
+}
+
+.tags {
+    height: fit-content;
+    line-height: 2;
+    margin-right: .5rem;
+    cursor: pointer;
+}
+
+#create-map-btn {
+    background-color: seagreen;
+}
+
+#tags-box {
+    display: flex;
+    align-items: center;
+}
+
+.modal-header {
+    border-radius: 0;
+    background-color: #67767F;
+}
+
+.modal-title {
+    font-family: 'Arial', sans-serif;
+    color: white;
+}
+
+.modal-header button {
+    font-size: x-large;
+    font-family: 'Arial', sans-serif;
+    color: #b32442;
+}
+
+#page {
+    margin-top: 5rem;
+}
+
+#my-friends * {
+    display: inline;
+    padding: 0;
+    color: cadetblue;
+}
+
+#result {
+    position: absolute;
+    padding: 0;
+}
+
+.itemResult{
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .25rem .5rem;
+}
+
+.itemResult a {
+    color: cadetblue;
+}
+
+.remove-map-btn {
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    color: #b32442;
+    margin: 1rem 2rem;
+    cursor: pointer;
+}
+
+.dis {
+    cursor: pointer;
+}
